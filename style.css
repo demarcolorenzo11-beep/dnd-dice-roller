@@ -101,34 +101,6 @@ footer {
     color: #827b70;
 }
 
-@media (max-width: 600px) {
-    body {
-        padding: 12px;
-    }
-
-    header h1 {
-        font-size: 25px;
-    }
-
-    .dice-row {
-        gap: 7px;
-    }
-
-    .scene {
-        height: 135px;
-    }
-
-    .dice-label {
-        font-size: 10px;
-        letter-spacing: 1px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .dice {
-        transition: none;
-    }
-}
 /* PANNELLO SOMMATORE */
 
 .sum-panel {
@@ -177,21 +149,16 @@ footer {
     background: rgba(233, 217, 188, 0.16);
 }
 
-@media (max-width: 1050px) {
-    .sum-panel {
-        position: static;
-        transform: none;
-        margin: 25px auto 0;
-        width: 190px;
-    }
-}.sum-history {
+.sum-history {
     font-size: 11px;
     line-height: 1.6;
     color: #a99b83;
     margin-bottom: 12px;
     overflow-wrap: anywhere;
     min-height: 18px;
-}/* CRONOLOGIA DEI RISULTATI */
+}
+
+/* CRONOLOGIA DEI RISULTATI */
 
 .history-panel {
     position: fixed;
@@ -241,11 +208,235 @@ footer {
     color: #827b70;
 }
 
+/* SCHERMI MEDI */
+
 @media (max-width: 1050px) {
+    .sum-panel {
+        position: static;
+        transform: none;
+        margin: 25px auto 0;
+        width: 190px;
+    }
+
     .history-panel {
         position: static;
         transform: none;
         margin: 25px auto 0;
         width: 190px;
+    }
+}
+
+/* VERSIONE SMARTPHONE */
+
+@media (max-width: 600px) {
+
+    body {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        grid-template-areas:
+            "header header"
+            "d4 d6"
+            "d8 d10"
+            "d12 d20"
+            "d100 history"
+            "sum history"
+            "footer footer";
+
+        grid-template-rows:
+            auto
+            repeat(3, minmax(110px, auto))
+            minmax(100px, auto)
+            minmax(190px, auto)
+            auto;
+
+        gap: 8px;
+        padding: 12px;
+        align-content: start;
+        align-items: stretch;
+        justify-content: stretch;
+    }
+
+    /* Permette agli elementi interni di usare la griglia principale */
+    .container {
+        display: contents;
+    }
+
+    header {
+        grid-area: header;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    header h1 {
+        font-size: 25px;
+        letter-spacing: 5px;
+    }
+
+    header p {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    /* Un'unica griglia per tutti i dadi */
+    .dice-row {
+        display: contents;
+    }
+
+    .dice[data-sides="4"] {
+        grid-area: d4;
+    }
+
+    .dice[data-sides="6"] {
+        grid-area: d6;
+    }
+
+    .dice[data-sides="8"] {
+        grid-area: d8;
+    }
+
+    .dice[data-sides="10"] {
+        grid-area: d10;
+    }
+
+    .dice[data-sides="12"] {
+        grid-area: d12;
+    }
+
+    .dice[data-sides="20"] {
+        grid-area: d20;
+    }
+
+    .dice[data-sides="100"] {
+        grid-area: d100;
+    }
+
+    .dice {
+        width: 100%;
+        min-width: 0;
+        padding: 3px 3px 8px;
+        align-self: stretch;
+    }
+
+    .scene {
+        height: 100px;
+    }
+
+    .dice-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin-top: 2px;
+    }
+
+    /* D100 in basso a sinistra */
+    .dice[data-sides="100"] {
+        grid-area: d100;
+    }
+
+    /* SOMMATORE sotto il D100 */
+    .sum-panel {
+        grid-area: sum;
+        position: static;
+        transform: none;
+        width: 100%;
+        margin: 0;
+        padding: 12px 9px;
+        align-self: stretch;
+    }
+
+    .sum-panel h2 {
+        font-size: 10px;
+        margin-bottom: 8px;
+    }
+
+    .sum-total {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .sum-history {
+        font-size: 10px;
+        margin-bottom: 7px;
+    }
+
+    .sum-panel button {
+        font-size: 9px;
+        padding: 9px 3px;
+        margin-top: 5px;
+    }
+
+    /* CRONOLOGIA a destra, affiancata a D100 e sommatore */
+    .history-panel {
+        grid-area: history;
+        position: static;
+        transform: none;
+        width: 100%;
+        max-height: none;
+        height: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 12px 9px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .history-panel h2 {
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+    }
+
+    #rollHistory {
+        max-height: none;
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        gap: 8px;
+    }
+
+    .history-entry {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    #rollHistory p {
+        font-size: 10px;
+    }
+
+    footer {
+        grid-area: footer;
+        margin-top: 8px;
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-align: center;
+    }
+}
+
+/* TELEFONI MOLTO PICCOLI */
+
+@media (max-width: 360px) {
+    body {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .scene {
+        height: 85px;
+    }
+
+    .sum-total {
+        font-size: 27px;
+    }
+
+    .history-panel,
+    .sum-panel {
+        padding: 10px 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dice {
+        transition: none;
     }
 }
