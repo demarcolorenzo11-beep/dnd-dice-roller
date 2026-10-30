@@ -1,0 +1,251 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #111923;
+    color: #e9d9bc;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 35px;
+}
+
+header h1 {
+    font-size: 34px;
+    letter-spacing: 7px;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-top: 9px;
+    color: #a99b83;
+}
+
+.dice-row {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.top-row {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.bottom-row {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.dice {
+    border: 1px solid rgba(233, 217, 188, 0.09);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.025);
+    color: #e9d9bc;
+    cursor: pointer;
+    min-width: 0;
+    padding: 5px 5px 14px;
+    transition: background 0.2s, border-color 0.2s;
+    overflow: hidden;
+}
+
+.dice:hover {
+    background: rgba(255, 255, 255, 0.065);
+    border-color: rgba(233, 217, 188, 0.3);
+}
+
+.dice:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scene {
+    width: 100%;
+    height: 190px;
+    position: relative;
+}
+
+.scene canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.dice-label {
+    display: block;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #c7b99e;
+    margin-top: 3px;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #827b70;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .dice-row {
+        gap: 7px;
+    }
+
+    .scene {
+        height: 135px;
+    }
+
+    .dice-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dice {
+        transition: none;
+    }
+}
+/* PANNELLO SOMMATORE */
+
+.sum-panel {
+    position: fixed;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 155px;
+    padding: 18px 12px;
+    background: #192432;
+    border: 1px solid rgba(233, 217, 188, 0.2);
+    border-radius: 14px;
+    text-align: center;
+    z-index: 10;
+}
+
+.sum-panel h2 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #a99b83;
+    margin-bottom: 12px;
+}
+
+.sum-total {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    color: #e9d9bc;
+    margin-bottom: 16px;
+    overflow-wrap: anywhere;
+}
+
+.sum-panel button {
+    width: 100%;
+    padding: 10px 5px;
+    margin-top: 7px;
+    border: 1px solid rgba(233, 217, 188, 0.25);
+    border-radius: 7px;
+    background: rgba(233, 217, 188, 0.07);
+    color: #e9d9bc;
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.sum-panel button:hover {
+    background: rgba(233, 217, 188, 0.16);
+}
+
+@media (max-width: 1050px) {
+    .sum-panel {
+        position: static;
+        transform: none;
+        margin: 25px auto 0;
+        width: 190px;
+    }
+}.sum-history {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #a99b83;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+    min-height: 18px;
+}/* CRONOLOGIA DEI RISULTATI */
+
+.history-panel {
+    position: fixed;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 155px;
+    max-height: 420px;
+    padding: 18px 12px;
+    background: #192432;
+    border: 1px solid rgba(233, 217, 188, 0.2);
+    border-radius: 14px;
+    text-align: center;
+    z-index: 10;
+}
+
+.history-panel h2 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #a99b83;
+    margin-bottom: 15px;
+}
+
+#rollHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+.history-entry {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #c7b99e;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(233, 217, 188, 0.08);
+}
+
+.history-entry strong {
+    color: #e9d9bc;
+}
+
+#rollHistory p {
+    font-size: 11px;
+    color: #827b70;
+}
+
+@media (max-width: 1050px) {
+    .history-panel {
+        position: static;
+        transform: none;
+        margin: 25px auto 0;
+        width: 190px;
+    }
+}

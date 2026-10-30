@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&D Dice Roller</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#111923">
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1>DICE ROLLER</h1>
+            <p>DUNGEONS & DRAGONS</p>
+        </header>
+
+        <section class="dice-row top-row">
+
+            <button class="dice" data-sides="4">
+                <div class="scene"></div>
+                <span class="dice-label">d4 · —</span>
+            </button>
+
+            <button class="dice" data-sides="6">
+                <div class="scene"></div>
+                <span class="dice-label">d6 · —</span>
+            </button>
+
+            <button class="dice" data-sides="8">
+                <div class="scene"></div>
+                <span class="dice-label">d8 · —</span>
+            </button>
+
+        </section>
+
+        <section class="dice-row bottom-row">
+
+            <button class="dice" data-sides="10">
+                <div class="scene"></div>
+                <span class="dice-label">d10 · —</span>
+            </button>
+
+            <button class="dice" data-sides="12">
+                <div class="scene"></div>
+                <span class="dice-label">d12 · —</span>
+            </button>
+
+            <button class="dice" data-sides="20">
+                <div class="scene"></div>
+                <span class="dice-label">d20 · —</span>
+            </button>
+
+            <button class="dice" data-sides="100">
+                <div class="scene"></div>
+                <span class="dice-label">d100 · —</span>
+            </button>
+
+        </section>
+
+        <footer>
+            TOCCA UN DADO PER LANCIARE
+        </footer>
+
+    </main>
+    <aside class="history-panel">
+    <h2>CRONOLOGIA</h2>
+    <div id="rollHistory">
+        <p>Nessun lancio</p>
+    </div>
+</aside>
+<aside class="sum-panel">
+    <h2>SOMMATORE</h2>
+    <div class="sum-history" id="sumHistory">Nessun lancio</div>
+
+    <div class="sum-total" id="sumTotal">0</div>
+
+    <button id="sumToggle">AVVIA SOMMA</button>
+    <button id="sumReset">AZZERA</button>
+</aside>
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./service-worker.js")
+                .catch(error => console.error("Errore PWA:", error));
+        });
+    }
+</script>
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>
