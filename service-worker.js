@@ -1,6 +1,6 @@
 
 {
-  "name": "D&D Dice Roller",
+  "name": "D&D Dice Roller v2",
   "short_name": "Dice Roller",
   "description": "Lancia i dadi di Dungeons & Dragons.",
   "start_url": "./",
